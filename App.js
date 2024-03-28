@@ -7,6 +7,7 @@ import HomeScreen from "./Screens/HomeScreen";
 import OTPVerifyScreen from "./Screens/OTPVerifyScreen";
 import { StatusBar } from "react-native";
 import { UserContext } from "./UserContext";
+import CreatePasswordScreen from "./Screens/CreatePasswordScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +40,11 @@ export default function App() {
           <Stack.Screen
             name="OTPVerify"
             component={OTPVerifyScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="CreatePassword"
+            component={CreatePasswordScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

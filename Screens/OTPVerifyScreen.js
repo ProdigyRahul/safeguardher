@@ -47,8 +47,21 @@ export default function OTPVerifyScreen({ navigation }) {
       );
 
       if (response.data.message) {
-        // OTP is valid
-        navigation.navigate("Home");
+        // Check if the user is onboarded
+        const onboardedResponse = await axios.post(
+          "http://172.20.10.3:8080/auth/check-onboarded",
+          {
+            mobileNumber: mobileNumber,
+          }
+        );
+
+        if (onboardedResponse.data.onboarded) {
+          // User is onboarded, navigate to Home
+          navigation.navigate("Home");
+        } else {
+          // User is not onboarded, navigate to create password screen
+          navigation.navigate("CreatePassword");
+        }
       } else {
         // OTP is invalid
         Alert.alert("Error", "Invalid OTP. Please try again.");

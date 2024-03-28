@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -9,15 +9,55 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  Alert,
 } from "react-native";
 import tw from "twrnc";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ArrowLeftIcon, ChevronDownIcon } from "react-native-heroicons/solid";
+import jwt_decode from "jwt-decode";
+import { UserType } from "../UserContext";
+import axios from "axios";
 
 export default function SignupScreen({ navigation }) {
+  const { setUserId } = useContext(UserType);
+
+  const [mobileNumber, setMobileNumber] = useState("");
+
+  const handleSignup = async () => {
+    try {
+      if (!mobileNumber) {
+        return Alert.alert("Error", "Please enter valid  mobile number.");
+      }
+
+      // Send a POST request to generate OTP
+      const response = await axios.post("http://172.20.10.3:8080/auth/signup", {
+        mobileNumber: mobileNumber,
+      });
+
+      console.log("Response data:", response.data);
+
+      if (response.data.token) {
+        // Save mobile number to AsyncStorage
+        await AsyncStorage.setItem("mobileNumber", mobileNumber);
+
+        // Save token to AsyncStorage
+        await AsyncStorage.setItem("authToken", response.data.token);
+
+        // Navigate to Home screen or wherever you want to navigate after successful login
+        navigation.navigate("OTPVerify");
+      } else {
+        Alert.alert("Error", "Failed to generate OTP. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      Alert.alert("Error", "An error occurred. Please try again later.");
+    }
+  };
+
   return (
     <KeyboardAvoidingView
       style={[tw`flex-1 bg-white`, { backgroundColor: "#fdd9e4" }]}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === "ios" ? "padding" : null}
     >
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}
@@ -52,7 +92,7 @@ export default function SignupScreen({ navigation }) {
                 fontSize: 30,
                 color: "#554288",
                 fontWeight: "bold",
-                marginBottom: 25,
+                marginBottom: 30,
               }}
             >
               SafeGuard Her
@@ -120,6 +160,17 @@ export default function SignupScreen({ navigation }) {
                   }}
                   placeholder="Enter your mobile number"
                   placeholderTextColor="#D3D3D3"
+                  onChangeText={(text) => {
+                    // Remove non-numeric characters
+                    const formattedText = text.replace(/[^0-9]/g, "");
+
+                    // Limit the input to 10 characters
+                    if (formattedText.length == 10) {
+                      setMobileNumber(formattedText);
+                    }
+                  }}
+                  keyboardType="number-pad" // Set keyboardType to "number-pad"
+                  maxLength={10}
                 />
               </View>
             </View>
@@ -140,9 +191,7 @@ export default function SignupScreen({ navigation }) {
               shadowRadius: 4,
               elevation: 5,
             }}
-            onPress={() => {
-              // TODO: Backend
-            }}
+            onPress={handleSignup}
           >
             <Text style={{ color: "white", fontSize: 18 }}>Continue</Text>
           </TouchableOpacity>
@@ -163,6 +212,7 @@ export default function SignupScreen({ navigation }) {
           </TouchableOpacity>
           <View
             style={{
+              marginTop: "auto",
               marginTop: 50,
               alignItems: "center",
             }}
