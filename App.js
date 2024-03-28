@@ -9,6 +9,7 @@ import { StatusBar } from "react-native";
 import { UserContext } from "./UserContext";
 import CreatePasswordScreen from "./Screens/CreatePasswordScreen";
 import CompleteProfileScreen from "./Screens/CompleteProfileScreen";
+import ProfileScreen from "./Screens/ProfileScreen";
 import TabsWrapper from "./Navigation/TabsWrapper";
 
 const Stack = createNativeStackNavigator();
@@ -72,6 +73,11 @@ export default function App() {
           <Stack.Screen
             name="HelplineTab"
             component={TabsWrapper}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={ProfileScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

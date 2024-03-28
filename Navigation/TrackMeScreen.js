@@ -13,7 +13,7 @@ import MapView, { Marker } from "react-native-maps";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Location from "expo-location";
 
-export default function TrackMeScreen() {
+export default function TrackMeScreen({ navigation }) {
   const [mapRegion, setMapRegion] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
 
@@ -53,9 +53,16 @@ export default function TrackMeScreen() {
             source={require("../assets/icon-logo.png")}
             style={styles.logo}
           />
-          <Text style={styles.appName}>SafeGuard Here</Text>
+          <Text style={styles.appName}>SafeGuard Her</Text>
         </View>
-        <MaterialCommunityIcons name="bell" size={24} color="#fff" />
+        <View style={styles.iconContainer}>
+          <TouchableOpacity>
+            <MaterialCommunityIcons name="bell" size={24} color="#fff" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <MaterialCommunityIcons name="account" size={24} color="#fff" />
+          </TouchableOpacity>
+        </View>
       </View>
       <MapView
         style={styles.map}
@@ -178,5 +185,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#888",
     marginTop: 10,
+  },
+  iconContainer: {
+    flexDirection: "row",
+    gap: 15,
   },
 });

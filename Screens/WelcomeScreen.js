@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -5,20 +6,40 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
 import tw from "twrnc";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 export default function WelcomeScreen({ navigation }) {
+  useEffect(() => {
+    checkUserLoggedIn();
+  }, []);
+
+  const checkUserLoggedIn = async () => {
+    try {
+      const mobileNumber = await AsyncStorage.getItem("mobileNumber");
+      const authToken = await AsyncStorage.getItem("authToken");
+
+      if (mobileNumber && authToken) {
+        navigation.replace("TrackMeTab");
+      }
+    } catch (error) {
+      console.error("Error checking user login status:", error);
+    }
+  };
+
   const handleGetStarted = () => {
     navigation.navigate("Signup");
   };
+
   const handleLogin = () => {
     navigation.navigate("Login");
   };
+
   return (
     <SafeAreaView style={[tw`flex-1`, { backgroundColor: "#fdd9e4" }]}>
       <View style={tw`flex-1 flex justify-around my-4`}>
         <Text
-          style={[tw` font-bold text-4xl text-center`, { color: "#554288" }]}
+          style={[tw`font-bold text-4xl text-center`, { color: "#554288" }]}
         >
           Welcome Screen
         </Text>
