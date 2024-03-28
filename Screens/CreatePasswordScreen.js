@@ -80,7 +80,7 @@ export default function CreatePasswordScreen({ navigation }) {
         // Handle success response
         Alert.alert("Success", "Password created successfully.");
         // Navigate to desired screen after password creation
-        navigation.navigate("Home");
+        navigation.navigate("CompleteProfile");
       } else {
         // Handle validation errors
         Alert.alert(

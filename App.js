@@ -1,13 +1,15 @@
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import WelcomeScreen from "./Screens/WelcomeScreen";
 import LoginScreen from "./Screens/LoginScreen";
 import SignupScreen from "./Screens/SignupScreen";
-import HomeScreen from "./Screens/HomeScreen";
 import OTPVerifyScreen from "./Screens/OTPVerifyScreen";
 import { StatusBar } from "react-native";
 import { UserContext } from "./UserContext";
 import CreatePasswordScreen from "./Screens/CreatePasswordScreen";
+import CompleteProfileScreen from "./Screens/CompleteProfileScreen";
+import TabsWrapper from "./Navigation/TabsWrapper";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,11 +35,6 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
             name="OTPVerify"
             component={OTPVerifyScreen}
             options={{ headerShown: false }}
@@ -45,6 +42,36 @@ export default function App() {
           <Stack.Screen
             name="CreatePassword"
             component={CreatePasswordScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="CompleteProfile"
+            component={CompleteProfileScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="TrackMeTab"
+            component={TabsWrapper}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="RecordTab"
+            component={TabsWrapper}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SOSTab"
+            component={TabsWrapper}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="FakeCallTab"
+            component={TabsWrapper}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="HelplineTab"
+            component={TabsWrapper}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

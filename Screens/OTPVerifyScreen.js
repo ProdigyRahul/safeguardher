@@ -57,7 +57,7 @@ export default function OTPVerifyScreen({ navigation }) {
 
         if (onboardedResponse.data.onboarded) {
           // User is onboarded, navigate to Home
-          navigation.navigate("Home");
+          navigation.navigate("TrackMeTab");
         } else {
           // User is not onboarded, navigate to create password screen
           navigation.navigate("CreatePassword");
