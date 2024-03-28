@@ -10,27 +10,21 @@ import { View, Text, StyleSheet } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
-// Custom SOS icon component
-const SOSIcon = () => (
-  <View style={styles.sosIcon}>
-    <View>
-      <MaterialCommunityIcons name="alert" size={20} color="#fff" />
-      <Text style={styles.sosIconText}>SOS</Text>
-    </View>
-  </View>
-);
-
 const TabsWrapper = ({ navigation, route }) => {
   const { name } = route;
 
   return (
     <Tab.Navigator
       screenOptions={{
-        activeTintColor: "#554288",
+        activeTintColor: "#554288", // Set the active color
         inactiveTintColor: "gray",
         style: styles.tabBar,
         labelStyle: styles.tabLabel,
         headerShown: false,
+        tabStyle: {
+          justifyContent: "center",
+          alignItems: "center",
+        },
       }}
     >
       <Tab.Screen
@@ -57,8 +51,12 @@ const TabsWrapper = ({ navigation, route }) => {
         name="SOSTab"
         component={SOSScreen}
         options={{
-          tabBarLabel: "",
-          tabBarIcon: ({ color }) => <SOSIcon />,
+          tabBarLabel: "SOS",
+          tabBarIcon: ({ color }) => (
+            <View style={styles.iconContainer}>
+              <MaterialCommunityIcons name="alert" size={24} color="red" />
+            </View>
+          ),
         }}
       />
       <Tab.Screen
@@ -77,7 +75,7 @@ const TabsWrapper = ({ navigation, route }) => {
         options={{
           tabBarLabel: "Helpline",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="phone" size={24} color={color} />
+            <MaterialCommunityIcons name="book" size={24} color={color} />
           ),
         }}
       />
@@ -89,7 +87,6 @@ export default TabsWrapper;
 
 const styles = StyleSheet.create({
   tabBar: {
-    backgroundColor: "#554288",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     height: 60,
@@ -99,22 +96,9 @@ const styles = StyleSheet.create({
   },
   tabLabel: {
     fontSize: 12,
-    marginBottom: 3,
+    color: "#554288",
   },
-  sosIcon: {
-    width: 45,
-    height: 45,
-    borderRadius: 25,
-    backgroundColor: "red",
-    justifyContent: "center",
+  iconContainer: {
     alignItems: "center",
-    marginTop: 15,
-  },
-  sosIconInner: {
-    alignItems: "center",
-  },
-  sosIconText: {
-    color: "#fff",
-    fontSize: 10,
   },
 });
