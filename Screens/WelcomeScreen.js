@@ -10,22 +10,22 @@ import tw from "twrnc";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function WelcomeScreen({ navigation }) {
-  useEffect(() => {
-    checkUserLoggedIn();
-  }, []);
+  // useEffect(() => {
+  //   checkUserLoggedIn();
+  // }, []);
 
-  const checkUserLoggedIn = async () => {
-    try {
-      const mobileNumber = await AsyncStorage.getItem("mobileNumber");
-      const authToken = await AsyncStorage.getItem("authToken");
+  // const checkUserLoggedIn = async () => {
+  //   try {
+  //     const mobileNumber = await AsyncStorage.getItem("mobileNumber");
+  //     const authToken = await AsyncStorage.getItem("authToken");
 
-      if (mobileNumber && authToken) {
-        navigation.replace("TrackMeTab");
-      }
-    } catch (error) {
-      console.error("Error checking user login status:", error);
-    }
-  };
+  //     if (mobileNumber && authToken) {
+  //       navigation.replace("TrackMeTab");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error checking user login status:", error);
+  //   }
+  // };
 
   const handleGetStarted = () => {
     navigation.navigate("Signup");

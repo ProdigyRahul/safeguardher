@@ -77,7 +77,7 @@ export default function CompleteProfileScreen({ navigation }) {
       );
 
       Alert.alert("Success", "Profile completed successfully.");
-      navigation.navigate("Track Me");
+      navigation.navigate("TrackMeTab");
     } catch (error) {
       console.error("Error:", error);
       Alert.alert("Error", "An error occurred. Please try again later.");
