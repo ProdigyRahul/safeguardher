@@ -11,6 +11,8 @@ import CreatePasswordScreen from "./Screens/CreatePasswordScreen";
 import CompleteProfileScreen from "./Screens/CompleteProfileScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import TabsWrapper from "./Navigation/TabsWrapper";
+import NotificationScreen from "./Screens/NotificationScreen";
+import AddFriendScreen from "./Screens/AddFriendScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -78,6 +80,16 @@ export default function App() {
           <Stack.Screen
             name="Profile"
             component={ProfileScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Notifications"
+            component={NotificationScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="AddContacts"
+            component={AddFriendScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

@@ -55,7 +55,9 @@ export default function RecordScreen({ navigation }) {
           <Text style={styles.appName}>SafeGuard Her</Text>
         </View>
         <View style={styles.iconContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Notifications")}
+          >
             <MaterialCommunityIcons name="bell" size={24} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>

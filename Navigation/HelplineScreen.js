@@ -23,7 +23,9 @@ export default function HelplineScreen({ navigation }) {
           <Text style={styles.appName}>SafeGuard Her</Text>
         </View>
         <View style={styles.iconContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Notifications")}
+          >
             <MaterialCommunityIcons name="bell" size={24} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
@@ -33,9 +35,6 @@ export default function HelplineScreen({ navigation }) {
       </View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.content}>
-          <Text style={styles.developmentMessage}>
-            This app is still in development. UI improvements are pending.
-          </Text>
           <Text style={styles.heading}>Helpline Numbers</Text>
           <Text style={styles.helplineText}>
             Women Helpline: 1091 {"\n"}
@@ -43,6 +42,10 @@ export default function HelplineScreen({ navigation }) {
             Police Emergency: 100 {"\n"}
             National Commission for Women: 011-26942369 {"\n"}
             Child Helpline: 1098
+          </Text>
+          <Text style={styles.developmentMessage}>
+            This app is still in development. {"\n"}
+            UI improvements are pending.
           </Text>
         </View>
       </ScrollView>
@@ -95,7 +98,7 @@ const styles = StyleSheet.create({
   developmentMessage: {
     fontSize: 16,
     color: "#554288",
-    marginBottom: 20,
+    marginTop: 20,
   },
   heading: {
     fontSize: 24,

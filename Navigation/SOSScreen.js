@@ -22,7 +22,7 @@ export default function SOSScreen({ navigation }) {
         position: "bottom",
         visibilityTime: 4000, // 4 seconds
       });
-    }, 1000); // Delay to ensure the component is mounted before showing the notification
+    }, 200);
 
     return () => clearTimeout(timer);
   }, []);

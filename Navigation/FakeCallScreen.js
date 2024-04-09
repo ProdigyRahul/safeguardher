@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function FakeCallScreen() {
+export default function FakeCallScreen({ navigation }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [timer, setTimer] = useState(null);
@@ -58,7 +58,9 @@ export default function FakeCallScreen() {
           <Text style={styles.appName}>SafeGuard Her</Text>
         </View>
         <View style={styles.iconContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Notifications")}
+          >
             <MaterialCommunityIcons name="bell" size={24} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>

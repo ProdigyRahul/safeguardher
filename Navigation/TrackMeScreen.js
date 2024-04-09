@@ -56,7 +56,9 @@ export default function TrackMeScreen({ navigation }) {
           <Text style={styles.appName}>SafeGuard Her</Text>
         </View>
         <View style={styles.iconContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Notifications")}
+          >
             <MaterialCommunityIcons name="bell" size={24} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
@@ -83,7 +85,10 @@ export default function TrackMeScreen({ navigation }) {
         <Text style={styles.descriptionText}>
           Share live location with your friends
         </Text>
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => navigation.navigate("AddContacts")}
+        >
           <Text style={styles.addButtonText}>Add Friends</Text>
         </TouchableOpacity>
         <Text style={styles.friendDescription}>
