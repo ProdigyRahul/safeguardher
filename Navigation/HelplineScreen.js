@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
   logoContainer: {
     flexDirection: "row",
     alignItems: "center",
+    marginTop: 30,
   },
   appName: {
     color: "#fff",

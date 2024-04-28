@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
   logoContainer: {
     flexDirection: "row",
     alignItems: "center",
+    marginTop: 30,
   },
   appName: {
     color: "#fff",
@@ -134,6 +135,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: "row",
     gap: 15,
+    marginTop: 30,
   },
   content: {
     flex: 1,
